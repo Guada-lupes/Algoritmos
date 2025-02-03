@@ -1,0 +1,1 @@
+//Crear un algoritmo que sume todos los números de un array.
