@@ -1,48 +1,175 @@
 //Escribir una función que convierta un número romano a número arábigo.
 
-function arabicoRomano(numero) {
-  const equivalencias = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
-  console.log(equivalencias);
+const equivalenciasRomano = {
+  I: 1,
+  V: 5,
+  X: 10,
+  L: 50,
+  C: 100,
+  D: 500,
+  M: 1000,
+};
 
+//invertir el array
+
+conversor("xvii");
+
+//Verificamos que el valor ingresado es un valor correcto a convertir
+function conversor(numero) {
+  //pasamos el string a numero
   const numeroVerificacion = parseInt(numero);
-  console.log(typeof numeroVerificacion);
+  const verificadorTresLetras = ["V", "L", "D"];
 
+  //Si no es un Nan, es porque es número
   if (!isNaN(numeroVerificacion)) {
     //conversion a romano
-    console.log("es numero");
+    console.log("Introduce un número romano");
+    return;
   }
+
+  //Si es NaN es un string
   if (isNaN(numeroVerificacion)) {
-    //conversion a arabico
+    console.log("Es un string");
+
+    //lo convertimos en mayúsuclas y en array
     const numeroToArray = numero.toUpperCase().split("");
-    let valoresConvertidos = [];
-    let valoresAsignados = []
-    console.log("es string");
-    numeroToArray.forEach((elemento) => {
+    //comprobamos que existan caracteres incorrectos
 
-      if (equivalencias.hasOwnProperty(elemento)) {
-        console.log(equivalencias[elemento]);
-        valoresConvertidos.push(equivalencias[elemento])
-      }})
-
-      for (let i = 0; i <valoresConvertidos.length; i++){
-        console.log(valoresConvertidos);
-        console.log(i);
-        
-        if(valoresConvertidos[i]<valoresConvertidos[i+1]){
-            console.log(-valoresConvertidos[i]);
-            
-            valoresAsignados.push(-valoresConvertidos[i])
-        }else{
-            valoresAsignados.push(valoresConvertidos[i])
-            console.log(valoresConvertidos[i]);
+    //comprobamos que no haya más de 3 caracteres iguales seguidos
+    if (numeroToArray.length > 3) {
+      for (let i = 0; i < numeroToArray.length-1; i++)
+        if (
+          numeroToArray[i] === numeroToArray[i + 1] &&
+          numeroToArray[i] === numeroToArray[i + 2] &&
+          numeroToArray[i] === numeroToArray[i + 3]
+        ) {
+          console.log("Lo símbolos no pueden repetirse más de 3 veces");
+          return;
         }
-        console.log(valoresAsignados);
+    }
+    //Los símbolos V, L y D no se pueden repetir
+    for (let i = 0; i < verificadorTresLetras.length-1; i++) {
+      //comprobamos si alguna de las letras del array verificador existe
+      if (numeroToArray.some((letra) => letra === verificadorTresLetras[i])) {
+        //si existen las filtramos en una constante
+        const contador = numeroToArray.filter(
+          (letra) => letra === verificadorTresLetras[i]
+        );
+        //comprobamos que el array no sea mayor a 1
+        if (contador.length > 1) {
+          console.log("Los símbolos V, L y D no pueden repetirse");
+          return;
+        }
       }
-    const resultado = valoresAsignados.reduce((acumulador, valorActual)=> acumulador+valorActual, 0)
-    
-    console.log(resultado);
-    
+    }
+    //si todo va bien, ejecutamos la funcion conversora
+    deRomanoAArabigo(numeroToArray);
   }
 }
+//Convertimos romano a arabigo
+function deRomanoAArabigo(numeroToArray) {
+  let valoresConvertidos = [];
+  let valoresAsignados = [];
 
-arabicoRomano("ivx");
+  for (let i = 0; i < numeroToArray.length; i++) {
+    //solo hay 6 combinaciones de resta posibles: IV IX XL XC CD CM. Comprobamos que siendo I, X o C, los valores que le prodecen son los válidos.
+    // if (
+    //   numeroToArray[i] === "I" ||
+    //   numeroToArray[i] === "X" ||
+    //   numeroToArray[i] === "C"
+    // ) {
+    //   if (
+    //     (
+    //       numeroToArray[i] === "I" &&
+    //       (numeroToArray[i + 1] === "V" ||
+    //         numeroToArray[i + 1] === "X" ||
+    //         numeroToArray[i + 1] === "I" ||
+    //         numeroToArray[i + 1] === undefined)
+    //     )||(
+    //       numeroToArray[i] === "X" &&
+    //         (numeroToArray[i + 1] === "L" ||
+    //           numeroToArray[i + 1] === "C" ||
+    //           numeroToArray[i + 1] === "I" ||
+    //           numeroToArray[i + 1] === "V" ||
+    //           numeroToArray[i + 1] === undefined)
+    //     )||(
+    //       numeroToArray[i] === "C" &&
+    //         (numeroToArray[i + 1] === "D" ||
+    //           numeroToArray[i + 1] === "M" ||
+    //           numeroToArray[i + 1] === undefined)
+    //     )
+    //   )
+        //Si se cunmple, convertimos su valor
+        arrayEquivalencias(numeroToArray[i]);
+      //si no se cunple salimos de la funcion
+    //   else {
+    //     console.log(
+    //       `${numeroToArray[i]} seguido de ${numeroToArray[i + 1]} no es válido`
+    //     );
+    //     return;
+    //   }
+    // }
+    // //Si no se cumple es porque la resta no es válida
+    // else {
+    //   arrayEquivalencias(numeroToArray[i]);
+    // }
+  }
+
+  //Buscamos equivalencias entre los valores introducidos y las claves del objeto equivalencias. Introducimos los valores de las equivalencias en el array valoresconvertidos
+  function arrayEquivalencias(letra) {
+    if (equivalenciasRomano.hasOwnProperty(letra)) {
+      console.log(equivalenciasRomano[letra]);
+
+
+      
+      valoresConvertidos.push(equivalenciasRomano[letra]);
+    }
+  }
+
+  for (let i = 0; i < valoresConvertidos.length; i++) {
+
+    console.log(valoresConvertidos);
+    console.log(valoresConvertidos.length);
+    
+    console.log(`valor actual ${valoresConvertidos[i]}`);
+    
+
+    //si el valor es menor que su continuo, pasa restando
+    if (valoresConvertidos[i] < valoresConvertidos[i + 1]) {
+      console.log(valoresConvertidos[i]);
+console.log("hola1");
+
+      valoresAsignados.push(-valoresConvertidos[i]);
+    }
+    //si el valor es mayor o igual que continuo, pasa sumando
+    if (valoresConvertidos[i] >= valoresConvertidos[i + 1]) {
+      console.log(valoresConvertidos[i]);
+console.log("hola2");
+
+      valoresAsignados.push(valoresConvertidos[i]);
+    }
+    //si el valor es menor que que su anterior, pasa sumando
+    // if (valoresConvertidos[i] < valoresConvertidos[i - 1]) {
+    //   console.log("hola3");
+      
+    //   valoresAsignados.push(valoresConvertidos[i]);
+    // }
+        
+    if(valoresConvertidos[i+1] === undefined){
+      console.log("hola0");
+      
+      valoresAsignados.push(valoresConvertidos[i]);
+      
+    }
+  }
+
+  console.log(valoresAsignados);
+  //sumamos todos lo valores para comprobar el resultado de la operación
+  const resultado = valoresAsignados.reduce(
+    (acumulador, valorActual) => acumulador + valorActual,
+    0
+  );
+
+  console.log(resultado);
+}
+
