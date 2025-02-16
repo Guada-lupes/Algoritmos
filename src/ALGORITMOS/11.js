@@ -16,13 +16,21 @@ function encontrarSegundoMayor(arrayNumeros) {
     `El segundo número mayor del array: ${arrayNumeros}, es ${segundoMayor}`
   );
 }
-
 function encontrarMayor(copiaArray) {
   const mayor = Math.max(...copiaArray);
   return mayor;
 }
 
+//-----LLAMAR A LA FUNCIÓN
 encontrarSegundoMayor(arrayNumeros);
+
+
+
+
+
+
+
+
 
 // versión optimizada
 function elSegundoMayor(arrayNumeros) {

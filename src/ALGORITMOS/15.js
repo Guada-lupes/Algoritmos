@@ -21,4 +21,6 @@ function numerosPrimos(numero){
         
     }
 }
+
+//--------LLAMAR A LA FUNCION--------
 numerosPrimos(25);

@@ -1,5 +1,7 @@
 //Crear un algoritmo que invierta un string.
 
+
+
 const palabra = "palabra";
 
 function invertirPalabra(palabra) {
@@ -11,5 +13,5 @@ function invertirPalabra(palabra) {
     console.log("Introduce una palabra");
   }
 }
-
+//---------LLAMAR A LA FUNCIÓN--------------------
 invertirPalabra(palabra)

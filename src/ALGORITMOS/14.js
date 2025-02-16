@@ -18,11 +18,12 @@ function sonAnagramas(palabra1, palabra2){
     const palabra2OrdenadaAstring = palabra2Limpia.sort((a, b) => a.localeCompare(b)).join("");
     console.log(palabra2OrdenadaAstring);
     
-
     if(palabra1OrdenadaAstring === palabra2OrdenadaAstring){
         console.log("Son anagramas");
     }
     else{console.log("No son anagramas");
     
     }}
+
+//--------LLAMAR A LA FUNCION ------------------
 sonAnagramas("coche", "checo");

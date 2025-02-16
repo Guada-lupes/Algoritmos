@@ -1,6 +1,7 @@
 //Crear un programa que calcule el número Fibonacci en la posición (n).
 
 function fibonacci(posicion) {
+  //Iniciamos fibonacci
   let fibonacci = [1, 1];
 
   for (let i = 0; i < posicion - 2; i++) {
@@ -15,4 +16,6 @@ function fibonacci(posicion) {
     } siendo la secuencia ${fibonacci}`
   );
 }
+//----------LLAMAR A LA FUNCIÓN -------
+
 fibonacci(7);

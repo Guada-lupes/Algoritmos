@@ -8,5 +8,7 @@ function sumarArray(numeros){
     console.log(suma);
     
 }
+
+//-------LLAMAR A LA FUNCION--------
 sumarArray(numeros)
 

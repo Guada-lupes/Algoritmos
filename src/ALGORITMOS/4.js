@@ -1,5 +1,6 @@
 //Crear un algoritmo que devuelva el factorial de un número.
 
+conseguirFactorial(3)
 
 function conseguirFactorial(numero) {
     let factorial = 1;
@@ -8,7 +9,5 @@ function conseguirFactorial(numero) {
         factorial *=i;
     }
     return console.log(factorial);
-     factorial
 } 
 
-conseguirFactorial(3)

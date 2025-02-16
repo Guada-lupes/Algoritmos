@@ -1,6 +1,5 @@
 //Escribir una función que determine si un número es par o impar.
 
-
 function numeroPar(numero) {
   if (typeof numero != "number"){
     console.log("No es un número"); return}
@@ -16,6 +15,7 @@ function numeroPar(numero) {
     
   }
 }
-numeroPar(5);
 
+//--------------LLAMAR A LA FUNCIÓN--------------------
+numeroPar(5);
 //Faltaría verificar que el número introducido con coma también lo entiende como decimal

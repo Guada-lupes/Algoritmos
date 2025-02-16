@@ -27,4 +27,6 @@ function contarCaracteres(palabra, caracter) {
   console.log(`${palabra} contiene: ${contadorCaracter} veces ${caracter}`);
 }
 
+//--------LLAMAR A LA FUNCION------------
+//Indica primero la palabra y luego la letra a buscar
 contarCaracteres("palabrap", "A");
